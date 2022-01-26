@@ -53,5 +53,5 @@ Shamir-s-Secret-Sharing-Scheme/
 
 Shamir-s-Secret-Sharing-Scheme/Esquema Secreto Compartido de Shamir (SSSS)/
 
-3. Develar.py: Este archivo permite la encriptación de un archivo por medio de los algoritmos SSSS/AES
-4. Ocultamiento.py: Se alamacena el procedimiento requerido para la desencriptación de un archivo por medio de los algoritmos SSSS/AES
+3. Encriptar.py: Este archivo permite la encriptación de un archivo por medio de los algoritmos SSSS/AES
+4. Desencriptar.py: Se alamacena el procedimiento requerido para la desencriptación de un archivo por medio de los algoritmos SSSS/AES
