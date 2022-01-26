@@ -13,4 +13,6 @@ La solución de aquel problema dictaba que se requería de un número impráctic
 En palabras del mismo, consiste de un esquema basado en interpolación polinomial: dado k puntos en un plano 2-dimensional (x_1,y_1),...,(x_k,y_k) con distintos valores x_i, 
 existe uno y sólo un polinomio q(x) de grado k-1 tal que q(x_i)=y, para toda i.
 
-[![imagen-2022-01-25-205550.png](https://i.postimg.cc/rwK0hGLb/imagen-2022-01-25-205550.png)](https://postimg.cc/sMCgxhx9)
+<div align="center">
+    [![imagen-2022-01-25-205810.png](https://i.postimg.cc/63wQNnDB/imagen-2022-01-25-205810.png)](https://postimg.cc/v1qyrgYK) 
+</div>
