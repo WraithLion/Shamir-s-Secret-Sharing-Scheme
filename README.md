@@ -10,8 +10,8 @@ y sólo si seis o más de los científicos están presentes. ¿Cuál es el menor
 necesarias que cada científico debe portar?
 
 La solución de aquel problema dictaba que se requería de un número impráctico de candados y llaves, lo que motivó a un método más eficiente para la resolución del problema.
-En palabras del mismo, consiste de un esquema basado en interpolación polinomial: dado k puntos en un plano 2-dimensional (x_1,y_1),...,(x_k,y_k) con distintos valores x_i, 
-existe uno y sólo un polinomio q(x) de grado k-1 tal que q(x_i)=y, para toda i.
+En palabras del mismo, consiste de un esquema basado en interpolación polinomial: dado k puntos en un plano 2-dimensional <img src="https://latex.codecogs.com/svg.image?(x_1,y_1),...,(x_k,y_k)" title="(x_1,y_1),...,(x_k,y_k)" /> con distintos valores <img src="https://latex.codecogs.com/svg.image?x_i" title="x_i" />, 
+existe uno y sólo un polinomio <img src="https://latex.codecogs.com/svg.image?q(x)" title="q(x)" /> de grado <img src="https://latex.codecogs.com/svg.image?k-1" title="k-1" /> tal que <img src="https://latex.codecogs.com/svg.image?q(x_i)=y&space;" title="q(x_i)=y " />, para toda i.
 
 <div align="center">
     <img src="https://i.postimg.cc/63wQNnDB/imagen-2022-01-25-205810.png"</img> 
