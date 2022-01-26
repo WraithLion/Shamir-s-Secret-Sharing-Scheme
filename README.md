@@ -16,3 +16,5 @@ existe uno y sólo un polinomio $`q(x)`$ de grado $`k-1`$ tal que $`q(x_i)=y`$, 
 <div align="center">
     <img src="https://i.postimg.cc/63wQNnDB/imagen-2022-01-25-205810.png"</img> 
 </div>
+
+$`a^2+b^2=c^2`$
