@@ -33,7 +33,7 @@ Una vez dicho esto, el proyecto consiste en crear un programa que emule lo anter
 
 # 2. Ejecución del programa
 
-Para proceder a ejecutar el programa, se requerirá primeramente que se descargue la carpeta Shamir-s-Secret-Sharing-Scheme-main adjunto a su contenido.
+Para proceder a ejecutar el programa, se requerirá primeramente que se descargue la carpeta Shamir-s-Secret-Sharing-Scheme-main adjunto a su contenido. Además de lo anterior, deberá tener instalado la biblioteca PyCryptodome, en caso de no tenerlo instalado consulte el siguiente enlace: https://pycryptodome.readthedocs.io/en/latest/src/installation.html
 
 Posteriormente, se ejecutará el archivo Encriptar.pyw ó Desencriptar.pyw localizado en Shamir-s-Secret-Sharing-Scheme/Esquema Secreto Compartido de Shamir (SSSS)/, este archivo se puede ejecutar ya sea dando doble click al archivo, dentro de una terminal (esto se puede realizar utilizando el comando "python3 Encriptar.pyw"/"python3 Desencriptar.pyw", asegúrate de que la terminal se encuentre en la carpeta donde se ubica "Encriptar.pyw"/"Desencriptar.pyw" usando el comando cd, de lo contrario te marcará el error de archivo no encontrado) o ejecutando el script con algún IDE (como lo es el caso del programa Anaconda, Spider o Visual Studio Core disponible para Windows, Linux y Mac, puedes consultar el método de instalación en el siguiente enlace: https://docs.anaconda.com/anaconda/install/index.html)
 
