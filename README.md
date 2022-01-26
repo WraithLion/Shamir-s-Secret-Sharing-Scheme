@@ -1,6 +1,6 @@
 # Shamir-s-Secret-Sharing-Scheme
 
-#1. Introducción
+# 1. Introducción
 
 El Esquema de Secreto Compartido de Shamir (Shamir's Secret Sharing Scheme o SSSS por sus siglas en inglés) es un algoritmo criptográfico descrito y publicado
 por primera vez a nombre de Adi Shamir en el escrito "How to Share a Secret", publicado en Abril de 1979.
