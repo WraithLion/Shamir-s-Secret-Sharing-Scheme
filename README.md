@@ -14,5 +14,5 @@ En palabras del mismo, consiste de un esquema basado en interpolación polinomia
 existe uno y sólo un polinomio q(x) de grado k-1 tal que q(x_i)=y, para toda i.
 
 <div align="center">
-    <img src="https://i.postimg.cc/63wQNnDB/imagen-2022-01-25-205810.png" width="400px"</img> 
+    <img src="https://i.postimg.cc/63wQNnDB/imagen-2022-01-25-205810.png"</img> 
 </div>
