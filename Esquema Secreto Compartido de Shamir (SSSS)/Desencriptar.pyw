@@ -1,34 +1,114 @@
+# Programa creado y elaborado por Valencia Cruz Jonathan Josué y Leonardo Aguirre Muñoz
+
+#Se importan las librerías necesarias para el proyecto
 from binascii import unhexlify
 from Crypto.Cipher import AES
 from Crypto.Protocol.SecretSharing import Shamir
+from tkinter import filedialog
+from tkinter import *
+from pathlib import *
+import os
 
-#a = unhexlify('4133d3e03a460ff5344a26af5f88dd3c')
-# a = unhexlify('2199a5727b78c7d26e325bb1ff9ffeaa')
-# print(a)
-shares = []
-# for x in range(2):
-#     idx = input("Enter index: ")
-#     share = input("Enter share: ")
-#     # idx, share = [ in_str.strip(s) for s in in_str.split(",") ]
-#     # print(idx)
-#     # print(share)
-#     print(share)
-#     shares.append((idx, unhexlify(share)))
-a = unhexlify('8f8e5cbe9ebf9cee28f6f77b7fb1190b')
-b = unhexlify('65c4e6e4b8f3b82eb04e77487e706d38')
-shares.append((1,a))
-shares.append((4,b))
-print(shares)
-key = Shamir.combine(shares)
-print(key)
+#Sirve para descifrar un archivo encriptado dado
+class descifrar:
+    
+    #Se almacenan las claves dadas por el usuario
+    def get_shares(self):
+        
+        #Inicia un arreglo en donde irán las claves
+        shares = []
+        
+        #Sirve para el manejo de errores
+        while True:
+            try:
+                #Le pregunta al usuario el número de claves requeridas
+                personas = int(input("Ingresa el número de personas presentes: "))
+                if personas<1:
+                    error()
+                break
+            except ValueError:
+                error()
+                
+        #Inicia un ciclo en donde se almacenarán las respectivas claves
+        for x in range(personas):
+            
+            #Le pregunta al usuario la clave
+            cadena = input("Ingresa tu clave: ")
+            
+            #Separa el número y la clave
+            cadena = cadena.strip()
+            tupla = cadena.split(sep=':', maxsplit=1)
+            clave=tupla[1].split(sep='b', maxsplit=1)
+            
+            #Almacena el número y clave en el arreglo shares
+            shares.append((int(tupla[0]),unhexlify(clave[1].strip('\''))))
+    
+        #Regresa el arreglo de claves dadas por el usuario
+        return shares
 
-with open("enc.txt", "rb") as fi:
-     nonce, tag = [ fi.read(16) for x in range(2) ]
-     cipher = AES.new(key, AES.MODE_EAX, nonce)
-     try:
-         result = cipher.decrypt(fi.read())
-         cipher.verify(tag)
-         with open("clear2.txt", "wb") as fo:
-             fo.write(result)
-     except ValueError:
-         print("The shares were incorrect")
+    #Obtiene la llave con las claves dadas por el usuario
+    def get_key(self,shares):
+    
+        #En caso de algún error, imprime un mensaje en pantalla
+        try:
+            #Combina las claves y obtiene la llave
+            key = Shamir.combine(shares)
+        except ValueError:
+            print("Las claves son incorrectas")
+        
+        #Regresa la llave
+        return key
+
+    #Envia un mensaje de error
+    def error(self):
+        print('Número no válido, por favor intente de nuevo')
+        
+    #Desencripta el archivo dado por el usuario a partir de la llave
+    def decrypt(self,key):
+        
+        #inicializa la interfaz gráfica
+        root = Tk()
+        root.withdraw()
+        root.update()
+        
+        #Le solicita al usuario el archivo a desencriptar
+        ruta = filedialog.askopenfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Selecciona el archivo .txt")   
+        #Le pide al usuario el nombre y ruta del nuevo archivo desencriptado
+        guardar = filedialog.asksaveasfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Guardar como")
+        
+        #Cierra la ventana restante
+        root.destroy()
+        
+        #Obtiene la ruta de guardar
+        direccion = PureWindowsPath(guardar)
+        #Cambia la ruta en que se situa el usuario
+        os.chdir(direccion.parents[0])
+        #Obtiene el nombre de guardar
+        nombre = PurePosixPath(guardar).name
+        
+        #Declara y acorta el comando read
+        with open(ruta, "rb") as fi:
+            #Obtiene las variables almacenadas en el archivo encriptado
+            nonce, tag = [ fi.read(16) for x in range(2) ]
+            #Realiza una nueva llave AES
+            cipher = AES.new(key, AES.MODE_EAX, nonce)
+            #En caso de que la llave sea incorrecta, imprime un mensaje en pantalla
+            try:
+                #Verifica que la llave sea correcta
+                result = cipher.decrypt(fi.read())
+                cipher.verify(tag)
+                #Declara y acorta el comando write
+                with open(guardar, "wb") as fo:
+                    #En caso de ser correcta la llave, crea el archivo desencriptado
+                    fo.write(result)
+            except ValueError:
+                print("Las claves son incorrectas")
+
+#Llama a la clase descifrar
+prueba=descifrar()
+#Obtiene las claves requeridas para desencriptar el archivo
+shares = prueba.get_shares()
+#Obtiene una llave a partir de las claves dadas
+key = prueba.get_key(shares)
+#Desencripta el archivo
+prueba.decrypt(key)
