@@ -27,6 +27,8 @@ Cada clave representa una tupla (x_i,y_i), siendo estas las coordenadas de un pu
 
 La clave secreta puede ser usada como llave para acceder a un proyecto, información o cualquier ente que quiera ocultarse a la vista de agentes externos, esta clave se nos dará al introducir las claves dadas con anterioridad en el Esquema de Shamir.
 
+Para más información, consulte el siguiente enlace: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.80.8910&rep=rep1&type=pdf
+
 Una vez dicho esto, el proyecto consiste en crear un programa que emule lo anterior descrito de tal manera que, a partir de la clave secreta, se descencripte un archivo .txt dado.
 
 # 2. Ejecución del programa
