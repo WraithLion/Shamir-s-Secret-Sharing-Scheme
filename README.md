@@ -39,8 +39,8 @@ Posteriormente, se ejecutará el archivo Encriptar.pyw ó Desencriptar.pyw local
 
 Con lo anterior realizado, usted verá que se iniciará el programa mostrando en pantalla una interfaz en donde se mostrarán las siguientes opciones:
 
-1. En caso de haber seleccionado el archivo Encriptar.pyw, se le pedirá ingresar el número de claves totales y el número de claves requeridas para desencriptar para posteriormente seleccionar el archivo a encriptar, se le mostrará en pantalla las claves generadas.
-2. En caso de haber seleccionado el archivo Desencriptar.pyw, se le pedirá ingresar las claves requeridas para desencriptar el archivo además de ingresar el archivo encriptado, estas claves son únicas y se requiere haber abierto primeramente el archivo Encriptar.pyw para la obtención de las mismas; una vez ingresadas y en caso de ser correctas, se guardará el archivo desencriptado a nombre y lugar dado por el usuario.
+1. En caso de haber seleccionado el archivo Encriptar.py, se le pedirá ingresar el número de claves totales y el número de claves requeridas para desencriptar para posteriormente seleccionar el archivo a encriptar, se le mostrará en pantalla las claves generadas.
+2. En caso de haber seleccionado el archivo Desencriptar.py, se le pedirá ingresar las claves requeridas para desencriptar el archivo además de ingresar el archivo encriptado, estas claves son únicas y se requiere haber abierto primeramente el archivo Encriptar.py para la obtención de las mismas; una vez ingresadas y en caso de ser correctas, se guardará el archivo desencriptado a nombre y lugar dado por el usuario.
 
 # 3. Información del contenido
 
