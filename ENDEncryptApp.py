@@ -1,13 +1,18 @@
 from Desencriptar import descifrar
 from SSSS import ocultar
-
+from tkinter import messagebox
 class menu():
 
     def Encriptar(self):
+        #Llama la clase ocultar
         Encripta = ocultar()
+        #Genera la llave
         key = Encripta.get_key()
+        #Fragmenta la llave para encriptar el archivo
         shares = Encripta.get_shares(key)
+        #Muestra los fragmentos generados en forma de clave
         Encripta.print_shares(shares)
+        #Encripta el archivo solicitado
         Encripta.encrypt(key)
 
     def Desencriptar(self):
@@ -20,9 +25,11 @@ class menu():
         #Desencripta el archivo
         Desencripta.decrypt(key)
     def RegresarMenu(self):
-        print("\n\nVolviendo al menú principal...\n\n")
+        messagebox.showinfo(message="Regreando al menú principal", title="Regresando")
     def Ejecutable(self):
-        while True:
+        global opcion
+        opcion=None
+        while opcion is None or opcion<1 or opcion !=3:
             try:
                 opcion=int(input("\n-------------------------------------------------------\nBienvenido a ENDEcryptApp, ¿Qué te gustaría hacer?\n\n1.-Encriptar un archivo\n\n2.-Desencriptar un archivo\n\n3.-Salir\n------------------------------------------------------\n"))
                 if opcion==1:
@@ -32,7 +39,7 @@ class menu():
                     self.Desencriptar()
                     self.RegresarMenu()
                 elif opcion==3:
-                    print("\n\n\nGracias por usar nuestra aplicación, vuelve pronto\n\n")
+                    messagebox.showinfo(message="Gracias por usar nuestra aplicación, vuelve pronto", title="Agradecimiento")
                     break
                 elif opcion<1 or opcion>3:
                     self.error()
@@ -41,6 +48,6 @@ class menu():
                 self.error()
 
     def error(self):
-        print('Opción no válida, intente de nuevo...')
+        messagebox.showinfo(message="Opcion invalida, intenta de nuevo", title="Aviso")
 Aplicacion=menu()
 Aplicacion.Ejecutable()

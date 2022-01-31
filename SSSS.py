@@ -3,6 +3,7 @@
 #Se importan las librerías binascii y Crypto
 from tkinter import filedialog
 from tkinter import *
+from tkinter import messagebox
 from pathlib import *
 import os
 from binascii import hexlify
@@ -22,25 +23,20 @@ class ocultar:
 
     #Genera claves usando el Esquema de Shamir a partir de una llave
     def get_shares(self,key):
-   
+
+        total_shares = None
         #Le pregunta al usuario el número de claves correspondientes
-        while True:
+        while total_shares is None or total_shares<1:
             try:
                 total_shares = int(input("\n\nIngresa el número total de claves a generar: \n"))
-                if total_shares<0:
-                    self.error(key)
-                break    
-            except ValueError:
-                self.error(key)
-            
-        while True:
+            except:
+                self.error()
+        req_shares=None
+        while req_shares is None or req_shares<0 or req_shares>total_shares:
             try:
                 req_shares = int(input("\n\nIngresa el número requerido de claves para la desencriptación del archivo: \n"))
-                if req_shares<0 or req_shares>total_shares:
-                    self.error(key)
-                break
             except ValueError:
-                self.error(key)
+                self.error()
         
     
         #Genera las claves usando el Esquema de Shamir
@@ -49,8 +45,8 @@ class ocultar:
         #Regresa las claves generadas por SSSS
         return shares
 
-    def error(self,key):
-        print("No es un número válido, por favor intenta de nuevo")
+    def error(self):
+        messagebox.showinfo(message="Opcion invalida, intenta de nuevo", title="Aviso")
 
     #Imprime las claves en pantalla
     def print_shares(self,shares):
@@ -59,18 +55,30 @@ class ocultar:
 
     #Encripta un archivo dado
     def encrypt(self,key):
-        root = Tk()
-        root.withdraw()
-        root.update()
-        ruta = filedialog.askopenfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Selecciona el archivo .txt")   
-        guardar = filedialog.asksaveasfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Guardar como")
-        root.destroy()
-        direccion = PurePath(guardar)
-        os.chdir(direccion.parents[0])
-        nombre = PurePosixPath(guardar).name
-        with open(ruta, "rb") as fi, open(nombre, "wb") as fo:
-            cipher = AES.new(key, AES.MODE_EAX)
-            ct, tag = cipher.encrypt(fi.read()), cipher.digest()
-            nonce = cipher.nonce
-            fo.write(nonce + tag + ct)
+
+        global ruta
+        ruta=None
+        while ruta is None:
+            try:
+                ruta = filedialog.askopenfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Selecciona el archivo .txt")
+            except:
+                self.error()
+                ruta = filedialog.askopenfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Selecciona el archivo .txt")
+        global guardar
+        guardar=None
+        while guardar is None:
+            try:
+                guardar = filedialog.asksaveasfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Guardar como")
+            except:
+                self.error()
+                guardar = filedialog.asksaveasfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Guardar como")
+            pass
+            direccion = PurePath(guardar)
+            os.chdir(direccion.parents[0])
+            nombre = PurePosixPath(guardar).name
+            with open(ruta, "rb") as fi, open(nombre, "wb") as fo:
+                cipher = AES.new(key, AES.MODE_EAX)
+                ct, tag = cipher.encrypt(fi.read()), cipher.digest()
+                nonce = cipher.nonce
+                fo.write(nonce + tag + ct)
     

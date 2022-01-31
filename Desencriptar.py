@@ -6,6 +6,7 @@ from Crypto.Cipher import AES
 from Crypto.Protocol.SecretSharing import Shamir
 from tkinter import filedialog
 from tkinter import *
+from tkinter import messagebox
 from pathlib import *
 import os
 
@@ -18,15 +19,16 @@ class descifrar:
         #Inicia un arreglo en donde irán las claves
         shares = []
         
+        global personas
+
+        personas=None
+
         #Sirve para el manejo de errores
-        while True:
+        while personas is None or personas<1:
             try:
                 #Le pregunta al usuario el número de claves requeridas
                 personas = int(input("\n\nIngresa el número de personas presentes: \n"))
-                if personas<1:
-                    self.error()
-                break
-            except ValueError:
+            except:
                 self.error()
                 
         #Inicia un ciclo en donde se almacenarán las respectivas claves
@@ -61,7 +63,7 @@ class descifrar:
 
     #Envia un mensaje de error
     def error(self):
-        print('\n\nNúmero no válido, por favor intente de nuevo\n')
+        messagebox.showinfo(message="Opcion invalida, intenta de nuevo", title="Aviso")
         
     #Desencripta el archivo dado por el usuario a partir de la llave
     def decrypt(self,key):
@@ -71,10 +73,24 @@ class descifrar:
         root.withdraw()
         root.update()
         
-        #Le solicita al usuario el archivo a desencriptar
-        ruta = filedialog.askopenfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Selecciona el archivo .txt")   
-        #Le pide al usuario el nombre y ruta del nuevo archivo desencriptado
-        guardar = filedialog.asksaveasfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Guardar como")
+        global ruta
+        ruta=None
+        while ruta is None:
+            try:
+                #Le solicita al usuario el archivo a desencriptar
+                ruta = filedialog.askopenfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Selecciona el archivo .txt")
+            except:
+                ruta = filedialog.askopenfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Selecciona el archivo .txt")
+                self.error()
+        global guardar
+        guardar=None
+        while guardar is None:
+            try:
+                #Le pide al usuario el nombre y ruta del nuevo archivo desencriptado
+                guardar = filedialog.asksaveasfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Guardar como")
+            except:
+                filedialog.asksaveasfilename(defaultextension='.txt',filetypes = [("Formato txt", ".txt")],title="Guardar como")
+                self.error()
         
         #Cierra la ventana restante
         root.destroy()
